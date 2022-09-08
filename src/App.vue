@@ -62,7 +62,8 @@
       popUp(){
         alert(
           "Terimakasih"+ " " + this.contact.nama + " " + "dengan" + " " + this.contact.email + " " + "mengirim note " +  " " + this.contact.note
-        )
+        );
+        this.$refs.form.reset();
       },
     }
   }
@@ -103,7 +104,7 @@
   </section>
   <section class="third">
     <h3>Contact Me</h3>
-    <form @submit.prevent="popUp()">
+    <form @submit.prevent="popUp()" ref="form">
       <p>Nama</p>
       <input type="text" placeholder="Nama" v-model="contact.nama"/>
       <p>Email</p>
