@@ -69,40 +69,41 @@
 </script>
 
 <template>
-  <h1>Resume</h1>
+  <div class="container">
+    <h1>Resume</h1>
   <h2>Denata Arif Nur Muhamad</h2>
   <P>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</P>
   <section class="first">
     <h3>Experience</h3>
-    <div v-for="exp in experience" :key="exp.id" >
-      <p @click="setShow_desc(exp)">
-       {{exp.id}}. {{exp.start}} - {{exp.end}} - {{exp.position}} - {{exp.company}}
-      </p>
-      <p v-if="exp.show_description">
+    <ol>
+      <li v-for="exp in experience" :key="exp.id" @click="setShow_desc(exp)">
+        {{exp.start}} - {{exp.end}} - {{exp.position}} - {{exp.company}}
+        <p v-if="exp.show_description">
         {{exp.description}}
       </p>
-    </div>
+      </li>
+    </ol>
   </section>
   <section class="second">
     <h3>Skills</h3>
-    <div class="skill" v-for="skl in skills">
+    <!-- <div class="skill" v-for="skl in skills">
       <p>{{skl.id}}. {{skl.skill}}</p>
       <div class="bar">
           <div class="presentase" :style="{'width': skl.presentase + '%'}"></div>
       </div>
-    </div>
-    <!-- <ol>
+    </div> -->
+    <ol>
       <li class="skill" v-for="skl in skills">
         {{skl.skill}} {{skl.presentase}}
         <div class="bar">
           <div class="presentase" :style="{'width': skl.presentase + '%'}"></div>
         </div>
       </li>
-    </ol> -->
+    </ol>
   </section>
   <section class="third">
     <h3>Contact Me</h3>
-    <form>
+    <form @submit.prevent="popUp()">
       <p>Nama</p>
       <input type="text" placeholder="Nama" v-model="contact.nama"/>
       <p>Email</p>
@@ -110,12 +111,17 @@
       <p>Note</p>
       <textarea placeholder="Note" v-model="contact.note"></textarea>
       <br/>
-      <button @click="popUp()">Submit</button>
+      <button class="btn">Submit</button>
     </form>
   </section>
+  </div>
 </template>
 
 <style>
+  .container{
+    width: 50%;
+    margin: auto;
+  }
   .bar {
     background-color: #11ffff;
     width: 100%;
@@ -143,5 +149,11 @@
     height: 30px;
     margin-bottom: 10px;
     border-radius: 5px;
+  }
+  .btn{
+    border-radius: 4px;
+    border: none;
+    background-color: #11ffff;
+    padding: 10px;
   }
 </style>
